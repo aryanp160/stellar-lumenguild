@@ -8,6 +8,7 @@ This repository also contains the completion of the **Stellar Journey to Mastery
 ## Smart Contract Deployment
 ## Live Demo URL :
 https://lumenguild.netlify.app/
+
 A basic Soroban smart contract for LumenGuild has been deployed to the Stellar Testnet:
 - **Contract Address (Testnet):** `CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ`
 - **Explorer Link:** [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ)
