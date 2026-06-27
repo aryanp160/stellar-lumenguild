@@ -5,6 +5,15 @@ LumenGuild is a decentralized application (dApp) built on the Stellar network th
 
 This repository also contains the completion of the **Stellar Journey to Mastery — White Belt** challenge.
 
+## Smart Contract Deployment
+## Live Demo URL :
+https://lumenguild.netlify.app/
+A basic Soroban smart contract for LumenGuild has been deployed to the Stellar Testnet:
+- **Contract Address (Testnet):** `CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ`
+- **Explorer Link:** [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ)
+- Transaction Hash of Smart Contract : aa798fcbde6260556b698f03eab5c2d74b32c46b005b5719aae0b6f5851c4af0
+- **Source Code:** Located in `contract/src/lib.rs`
+
 ## Features
 
 ### LumenGuild Web App (Vite + React + Tailwind)
@@ -92,11 +101,5 @@ npm run build
 ```
 The output will be generated in the `dist/` directory.
 
-## Smart Contract Deployment
 
-A basic Soroban smart contract for LumenGuild has been deployed to the Stellar Testnet:
-- **Contract Address (Testnet):** `CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ`
-- **Explorer Link:** [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ)
-- Transaction Hash of Smart Contract : aa798fcbde6260556b698f03eab5c2d74b32c46b005b5719aae0b6f5851c4af0
-- **Source Code:** Located in `contract/src/lib.rs`
 
