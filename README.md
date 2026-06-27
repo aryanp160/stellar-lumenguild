@@ -3,7 +3,6 @@
 
 LumenGuild is a decentralized application (dApp) built on the Stellar network that serves as a financial hub for ad-hoc freelance collectives. It allows independent workers (designers, developers, copywriters, etc.) to form temporary "Guilds" for client projects, track shared expenses, and automatically settle debts on-chain using XLM via the Freighter wallet.
 
-This repository also contains the completion of the **Stellar Journey to Mastery — White Belt** challenge.
 
 ## Smart Contract Deployment
 ## Live Demo URL :
@@ -84,15 +83,6 @@ npm run dev
 ```
 Open `http://localhost:5173` in your browser. Ensure your Freighter wallet is set to the **Testnet** network.
 
-### Running White Belt Scripts
-
-If you want to run the underlying Node.js scripts:
-```bash
-npm run create    # Generate wallet
-npm run fund      # Fund with Friendbot
-npm run balance   # Check balance
-npm run send      # Send test transaction
-```
 
 ## Building for Production
 
