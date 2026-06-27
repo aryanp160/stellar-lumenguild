@@ -1,9 +1,13 @@
 import * as StellarSdk from "@stellar/stellar-sdk";
 import * as dotenv from "dotenv";
 import * as path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load environment variables from .env file
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 async function sendTransaction() {
   console.log("=== Stellar First Transaction ===");
