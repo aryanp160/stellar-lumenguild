@@ -1,0 +1,32 @@
+{
+  "name": "stellar-white",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "create": "ts-node src/1_create_wallet.ts",
+    "fund": "ts-node src/2_fund_wallet.ts",
+    "balance": "ts-node src/3_check_balance.ts",
+    "send": "ts-node src/4_send_transaction.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryanp160/stellar-white.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryanp160/stellar-white/issues"
+  },
+  "homepage": "https://github.com/aryanp160/stellar-white#readme",
+  "description": "",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^16.0.1",
+    "dotenv": "^17.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
