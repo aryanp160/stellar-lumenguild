@@ -17,7 +17,7 @@ const { signTransaction } = freighterApi;
 export function GroupDetails() {
   const { id } = useParams<{ id: string }>();
   const { address } = useWallet();
-  const { getGroup, addMember, addExpense } = useGroups();
+  const { getGroup, addMember, addExpense, addSettlement, isLoaded } = useGroups();
   const { toast } = useToast();
 
   const [isMemberModalOpen, setIsMemberModalOpen] = useState(false);
@@ -33,11 +33,16 @@ export function GroupDetails() {
   const [expenseAmount, setExpenseAmount] = useState('');
   const [expensePayer, setExpensePayer] = useState(address || '');
 
-  if (!address || !id) return <Navigate to="/dashboard" replace />;
-  const group = getGroup(id);
-  if (!group) return <Navigate to="/dashboard" replace />;
+  const group = id ? getGroup(id) : undefined;
 
-  const settlementPlan = useMemo(() => calculateSettlement(group.members, group.expenses), [group]);
+  const settlementPlan = useMemo(() => {
+    if (!group) return [];
+    return calculateSettlement(group.members, group.expenses, group.settlements || []);
+  }, [group]);
+
+  if (!isLoaded) return <div className="flex justify-center py-20"><div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div></div>;
+  if (!address || !id) return <Navigate to="/dashboard" replace />;
+  if (!group) return <Navigate to="/dashboard" replace />;
 
   const handleAddMember = (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,10 +108,16 @@ export function GroupDetails() {
       const response = await server.submitTransaction(signedTx as any);
       toast(`Settled! Tx Hash: ${response.hash.substring(0, 10)}...`, "success");
       
-      // In a real app, we would mark this specific debt as settled in the DB.
+      // Update the local state so the math updates
+      addSettlement(group.id, tx.fromAddress, tx.toAddress, tx.amount);
     } catch (e: any) {
       console.error(e);
-      toast("Transaction failed or was rejected.", "error");
+      if (e.response?.status === 400) {
+        toast("Stellar Tx Failed (Destination likely unfunded). Marking as settled locally!", "info");
+        addSettlement(group.id, tx.fromAddress, tx.toAddress, tx.amount);
+      } else {
+        toast("Transaction failed or was rejected.", "error");
+      }
     } finally {
       setIsSettling(false);
     }

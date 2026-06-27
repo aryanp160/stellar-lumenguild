@@ -14,12 +14,21 @@ export interface Expense {
   date: string;
 }
 
+export interface Settlement {
+  id: string;
+  fromAddress: string;
+  toAddress: string;
+  amount: number;
+  date: string;
+}
+
 export interface Group {
   id: string;
   name: string;
   description: string;
   members: Member[];
   expenses: Expense[];
+  settlements?: Settlement[];
   createdAt: string;
 }
 
@@ -88,6 +97,24 @@ export function useGroups() {
     saveGroups(newGroups);
   };
 
+  const addSettlement = (groupId: string, fromAddress: string, toAddress: string, amount: number) => {
+    const newSettlement: Settlement = {
+      id: uuidv4(),
+      fromAddress,
+      toAddress,
+      amount,
+      date: new Date().toISOString()
+    };
+    
+    const newGroups = groups.map(g => {
+      if (g.id === groupId) {
+        return { ...g, settlements: [...(g.settlements || []), newSettlement] };
+      }
+      return g;
+    });
+    saveGroups(newGroups);
+  };
+
   const getGroup = (id: string) => groups.find(g => g.id === id);
 
   return {
@@ -96,6 +123,7 @@ export function useGroups() {
     createGroup,
     addMember,
     addExpense,
+    addSettlement,
     getGroup
   };
 }

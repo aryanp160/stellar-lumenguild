@@ -1,4 +1,4 @@
-import type { Expense, Member } from '../hooks/useGroups';
+import type { Expense, Member, Settlement } from '../hooks/useGroups';
 
 export interface SettlementTransaction {
   fromAddress: string;
@@ -8,7 +8,7 @@ export interface SettlementTransaction {
   amount: number;
 }
 
-export function calculateSettlement(members: Member[], expenses: Expense[]): SettlementTransaction[] {
+export function calculateSettlement(members: Member[], expenses: Expense[], pastSettlements: Settlement[] = []): SettlementTransaction[] {
   if (members.length === 0) return [];
   
   // Calculate total spent by each member
@@ -32,6 +32,14 @@ export function calculateSettlement(members: Member[], expenses: Expense[]): Set
     name: m.name,
     balance: spentByMember[m.address] - equalShare
   }));
+  
+  // Adjust balances based on what has already been settled manually or on-chain
+  pastSettlements.forEach(s => {
+    const fromMember = balances.find(b => b.address === s.fromAddress);
+    const toMember = balances.find(b => b.address === s.toAddress);
+    if (fromMember) fromMember.balance += s.amount;
+    if (toMember) toMember.balance -= s.amount;
+  });
 
   const debtors = balances.filter(b => b.balance < -0.0001).sort((a, b) => a.balance - b.balance); // Most negative first
   const creditors = balances.filter(b => b.balance > 0.0001).sort((a, b) => b.balance - a.balance); // Most positive first

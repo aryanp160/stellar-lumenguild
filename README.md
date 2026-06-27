@@ -93,8 +93,15 @@ npm run build
 ```
 The output will be generated in the `dist/` directory.
 
+## Smart Contract Deployment
+
+A basic Soroban smart contract for LumenGuild has been deployed to the Stellar Testnet:
+- **Contract Address (Testnet):** `CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ`
+- **Explorer Link:** [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CACBOTO26HWBQU5V2W6XHUTOIMLRNR4HS47RMPCIAZVLBJFHQO4UKCBJ)
+- **Source Code:** Located in `contract/src/lib.rs`
+
 ## Future Improvements
-- **Smart Contracts (Soroban):** Move the group state and expense tracking directly on-chain.
+- **Smart Contracts (Soroban):** Connect the frontend to the deployed on-chain smart contract for state management.
 - **Stablecoin Support:** Allow settlements in USDC instead of just XLM.
 - **Database Integration:** Replace LocalStorage with a proper backend (e.g., Supabase or Firebase) to sync data across members.
 
