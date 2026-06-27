@@ -1,32 +1,42 @@
 {
-  "name": "stellar-white",
+  "name": "stellar-white-lumenguild",
+  "private": true,
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "create": "ts-node src/1_create_wallet.ts",
-    "fund": "ts-node src/2_fund_wallet.ts",
-    "balance": "ts-node src/3_check_balance.ts",
-    "send": "ts-node src/4_send_transaction.ts"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "create": "node --loader ts-node/esm scripts/whitebelt/1_create_wallet.ts",
+    "fund": "node --loader ts-node/esm scripts/whitebelt/2_fund_wallet.ts",
+    "balance": "node --loader ts-node/esm scripts/whitebelt/3_check_balance.ts",
+    "send": "node --loader ts-node/esm scripts/whitebelt/4_send_transaction.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryanp160/stellar-white.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aryanp160/stellar-white/issues"
-  },
-  "homepage": "https://github.com/aryanp160/stellar-white#readme",
-  "description": "",
   "dependencies": {
+    "@stellar/freighter-api": "latest",
     "@stellar/stellar-sdk": "^16.0.1",
-    "dotenv": "^17.4.2"
+    "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
+    "lucide-react": "^0.474.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.1.5",
+    "tailwind-merge": "^3.0.1",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
-    "@types/node": "^26.0.1",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "autoprefixer": "^10.5.2",
+    "oxlint": "^1.69.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "~6.0.2",
+    "vite": "^8.1.0"
   }
 }

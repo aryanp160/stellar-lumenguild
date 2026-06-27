@@ -1,24 +1,62 @@
-# Stellar Journey to Mastery — White Belt
+# LumenGuild (Stellar White Belt Submission)
 
-This repository contains the completion of the Stellar Journey to Mastery — White Belt challenge. It demonstrates fundamental interactions with the Stellar blockchain using the `@stellar/stellar-sdk` via TypeScript.
+![LumenGuild Hero Placeholder](./public/hero-placeholder.png)
+
+LumenGuild is a decentralized application (dApp) built on the Stellar network that serves as a financial hub for ad-hoc freelance collectives. It allows independent workers (designers, developers, copywriters, etc.) to form temporary "Guilds" for client projects, track shared expenses, and automatically settle debts on-chain using XLM via the Freighter wallet.
+
+This repository also contains the completion of the **Stellar Journey to Mastery — White Belt** challenge.
 
 ## Features
 
-- **Wallet Creation:** Generates a new random Stellar Keypair and securely stores the credentials.
-- **Account Funding:** Automatically connects to Friendbot (Stellar's Testnet Faucet) to fund newly generated accounts.
-- **Balance Retrieval:** Connects to the Stellar Testnet, fetches the account details, and displays balances.
-- **First Transaction:** Builds, signs, and broadcasts a transaction (Create Account operation) to the Stellar Testnet.
+### LumenGuild Web App (Vite + React + Tailwind)
+- **Modern UI:** Responsive design with a dark mode glassmorphism aesthetic.
+- **Freighter Integration:** Connect your Stellar wallet seamlessly.
+- **Guild Management:** Create groups and invite members via their Stellar Public Keys.
+- **Expense Tracking:** Log out-of-pocket project costs.
+- **Settlement Calculator:** Automatically calculates who owes who based on equal-share splits.
+- **On-Chain Settlement:** Pay debts directly from the UI using `TransactionBuilder` and Freighter signing.
 
-## Setup Instructions
+### White Belt Scripts (Node.js)
+Located in `scripts/whitebelt/`, these scripts demonstrate the fundamentals of the Stellar SDK:
+- **Wallet Creation:** Generates secure keypairs.
+- **Testnet Funding:** Connects to Friendbot.
+- **Balance Retrieval:** Fetches live balances.
+- **Transactions:** Broadcasts native XLM transactions.
+
+## Tech Stack
+
+- **Frontend:** React 18, TypeScript, Vite
+- **Styling:** TailwindCSS v3.x, Lucide React (Icons)
+- **Blockchain:** `@stellar/stellar-sdk`, `@stellar/freighter-api`
+- **State Management:** React Context, LocalStorage
+- **Routing:** React Router DOM
+
+## Folder Structure
+
+```text
+stellar-white/
+├── src/
+│   ├── components/       # Reusable UI components (Card, Modal, Button)
+│   ├── context/          # WalletContext for Freighter integration
+│   ├── hooks/            # LocalStorage persistence logic (useGroups)
+│   ├── pages/            # Dashboard, LandingPage, GroupDetails
+│   ├── utils/            # Settlement math & tailwind utilities
+│   ├── App.tsx           # React routing
+│   └── main.tsx          # React entrypoint
+├── scripts/whitebelt/    # Original White Belt Node.js scripts
+├── docs/                 # White Belt submission proofs
+└── README.md
+```
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (v22+)
-- npm (Node Package Manager)
-- Git
+- [Node.js](https://nodejs.org) (v22+)
+- [Freighter Wallet Extension](https://freighter.app/)
 
 ### Installation
 
-1. Clone this repository:
+1. Clone the repository:
    ```bash
    git clone https://github.com/aryanp160/stellar-white.git
    cd stellar-white
@@ -29,42 +67,36 @@ This repository contains the completion of the Stellar Journey to Mastery — Wh
    npm install
    ```
 
-3. Setup environment variables:
-   - Copy `.env.example` to `.env` if you have existing testnet keys, OR simply run the creation script below to automatically generate them.
+### Running Locally
 
-## Running the Project
+Start the Vite development server:
+```bash
+npm run dev
+```
+Open `http://localhost:5173` in your browser. Ensure your Freighter wallet is set to the **Testnet** network.
 
-Run the following scripts in order to complete the workflow:
+### Running White Belt Scripts
 
-1. **Create Wallet:**
-   ```bash
-   npm run create
-   ```
-   *Generates a new keypair and saves it to `.env`.*
+If you want to run the underlying Node.js scripts:
+```bash
+npm run create    # Generate wallet
+npm run fund      # Fund with Friendbot
+npm run balance   # Check balance
+npm run send      # Send test transaction
+```
 
-2. **Fund Wallet:**
-   ```bash
-   npm run fund
-   ```
-   *Requests 10,000 testnet XLM from Friendbot.*
+## Building for Production
 
-3. **Check Balance:**
-   ```bash
-   npm run balance
-   ```
-   *Connects to the testnet and prints your current XLM balance.*
+To build the static web app for production (e.g., to deploy to Vercel, Netlify, or Cloudflare Pages):
+```bash
+npm run build
+```
+The output will be generated in the `dist/` directory.
 
-4. **Send Transaction:**
-   ```bash
-   npm run send
-   ```
-   *Creates a transaction, signs it, and broadcasts it to the Stellar testnet.*
+## Future Improvements
+- **Smart Contracts (Soroban):** Move the group state and expense tracking directly on-chain.
+- **Stablecoin Support:** Allow settlements in USDC instead of just XLM.
+- **Database Integration:** Replace LocalStorage with a proper backend (e.g., Supabase or Firebase) to sync data across members.
 
-## White Belt Completion Notes
-
-- **Secret Management:** Secrets are stored securely in `.env` and are explicitly ignored in `.gitignore`.
-- **Code Quality:** Written in TypeScript, properly typed, and documented with clear logging.
-- **Error Handling:** Robust try/catch blocks with friendly feedback in case Friendbot fails or accounts do not exist.
-
----
-*Created as part of the Stellar Journey to Mastery.*
+## License
+MIT License
